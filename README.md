@@ -11,8 +11,15 @@
 <img src="images/net_diagram.png"/><br><br>
 
 ### 内网主机配置
-
+　　进入内网主机对应的虚拟机系统，点击右上角设置标志，"system setting->Network->options->IPv4 Settings"设置静态ip地址为：`192.168.164.2`，并将其网关设置为`192.168.164.1`。设置如下：<br><br>
+ 　　　　　　　　　 　　　　　　　<img src="images/ipsetting.png" height="400" width="350"/><br><br>
+　　安装apache，开启web服务。并可以通过修改`/var/www/index.html`来修改网页的内容。安装完成后打开浏览器，访问127.0.0.1，如果能正常访问，说明web服务已经开启。命令如下：
+```
+sudo apt-get install apache2
+sudo /etc/init.d/apache2 start
+```
 ### 外网主机配置
+　　类似内网主机虚拟机的设置，设置静态ip:`192.168.152.2`，并将网关设置为`192.168.152.1`。安装并开启web服务。
 
 ### 防火墙主机配置
 　　首先开启防火墙转发功能，使用命令`sudo echo 1 > /proc/sys/net/ipv4/ip_forward`开启该功能。开启后测试内网主机(192.168.164.2)是否可以ping通外网主机(192.168.152.2)如果可以，说明目前为止配置没有问题。
